@@ -40,7 +40,7 @@ define([
             session: {},
             tabs: [
                 {icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
-		{state: 'custom1', label: 'Custom tab1'}
+		{label: 'Custom tab1'}
             ]
         };
 

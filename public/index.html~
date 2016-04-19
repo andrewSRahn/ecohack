@@ -50,6 +50,9 @@
             </px-app-nav>
             <main class="layout__item u-pt-- u-pr-- u-pl--" role="main">
               <!-- MAIN CONTENT -->
+              	 <px-simple-line-chart
+	      	line-data="[ [1,2], [2,3], [3,4] ]">
+	         </px-simple-line-chart>
               <section class="u-1/1" role="region" ui-view>
                 <!-- This is the container where the tabs will render -->
 	      </section>
