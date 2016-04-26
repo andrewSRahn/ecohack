@@ -1,10 +1,11 @@
 <div id="Custom1" ng-controller="Custom1Ctrl">>
 	<px-card>
 		<h1>Hello world</h1>
-	</px-card>   
+	</px-card>
 	<px-card>
 		<h3>px-simple-line-chart</h3>
 		<px-simple-line-chart
+			id="simple-line-chart-1"
 			min="1"
 			max="6"
 			columns="20"
@@ -17,6 +18,20 @@
 			width="480"
 			height="480">
 		</px-simple-line-chart>
+		<px-tooltip
+			tooltip-message="Hello World"
+			for="simple-line-chart-1"
+			orientation="top">
+		</px-tooltip>
 	</px-card>
-	
+	<px-card>
+        <px-data-table table-data="{{dataTableData}}" filterable selectable striped table-data="{{data}}">
+            <px-data-table-column
+                name="first"
+                sortable
+                filter-function-name="myTableCustomFunctions.filterWholeWord"
+                sort-function-name="myTableCustomFunctions.sortByEmailDomain">
+            </px-data-table-column>
+        </px-data-table>
+	</px-card>
 </div>

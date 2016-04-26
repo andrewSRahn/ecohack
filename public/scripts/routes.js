@@ -19,11 +19,21 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 templateUrl: 'views/dashboards.html',
                 controller: 'DashboardsCtrl'
             })
-	    .state('custom1', {
-	    	url: '/custom1',
-		templateUrl: 'views/custom1.html',
-		controller: 'Custom1Ctrl'
-	    });
+				.state('custom1', {
+					url: '/custom1',
+					templateUrl: 'views/custom1.html',
+					controller: 'Custom1Ctrl'
+				})
+				.state('wind', {
+					url: '/wind',
+					templateUrl: 'views/wind.html',
+					controller: 'WindCtrl'
+				})
+				.state('solar', {
+					url: '/solar',
+					templateUrl: 'views/solar.html',
+					controller: 'SolarCtrl'
+				});
 
 
 

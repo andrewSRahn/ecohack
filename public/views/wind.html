@@ -1,11 +1,10 @@
-<div id="Custom1" ng-controller="Custom1Ctrl">>
+<div id="Wind" ng-controller="WindCtrl">>
 	<px-card>
 		<h1>Hello world</h1>
-	</px-card>   
+	</px-card>
 	<px-card>
 		<h3>px-simple-line-chart</h3>
 		<px-simple-line-chart
-			id="simple-line-chart-1"
 			min="1"
 			max="6"
 			columns="20"
@@ -18,15 +17,18 @@
 			width="480"
 			height="480">
 		</px-simple-line-chart>
-		<px-tooltip 
-			tooltip-message="Hello World"
-			for="simple-line-chart-1"
-			orientation="topt">
-		</px-tooltip>
+	</px-card>
 
-		
-	</px-card>
 	<px-card>
+		<p>{{helloWind}}</p>
+		<p>{{comingFromFactory}}</p>
+        <px-alert-message
+            type="information"
+            message-title="Heads up!"
+            message="This definitely needs our attention."
+            action="https://www.predix.io/"
+            auto-dismiss="5000">
+        </px-alert-message>
 	</px-card>
-	
+
 </div>

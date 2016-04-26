@@ -1,11 +1,10 @@
-<div id="Custom1" ng-controller="Custom1Ctrl">>
+<div id="Solar" ng-controller="SolarCtrl">>
 	<px-card>
 		<h1>Hello world</h1>
 	</px-card>   
 	<px-card>
 		<h3>px-simple-line-chart</h3>
 		<px-simple-line-chart
-			id="simple-line-chart-1"
 			min="1"
 			max="6"
 			columns="20"
@@ -18,15 +17,9 @@
 			width="480"
 			height="480">
 		</px-simple-line-chart>
-		<px-tooltip 
-			tooltip-message="Hello World"
-			for="simple-line-chart-1"
-			orientation="topt">
-		</px-tooltip>
-
-		
 	</px-card>
 	<px-card>
+		<p>{{helloSolar}}
 	</px-card>
-	
+
 </div>

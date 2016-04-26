@@ -26,6 +26,7 @@ define([
         'px.ngBindPolymer'
     ]);
 
+
     /**
      * Main Controller
      * This controller is the top most level controller that allows for all
@@ -40,7 +41,9 @@ define([
             session: {},
             tabs: [
                 {icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
-		{state: 'custom1', label: 'Custom tab1'}
+                {state: 'custom1', label: 'Custom tab1'},
+                {state: 'wind', label: 'Wind'},
+                {state: 'solar', label: 'Solar'}
             ]
         };
 
@@ -61,8 +64,63 @@ define([
         // });
     }]);
 
+    predixApp.factory('restService', function ($scope, $rootScope) {
+        var factory = {};
+        // factory.routes = {
+        //     uiRest: $rootScope('http://hello-python-ryan.run.aws-usw02-pr.ice.predix.io/hello', {})
+        // };
 
-    //Set on window for debugging
+        factoryData = 'hello factoryData';
+
+        console.log('hello from factory');
+        return factory;
+    });
+
+    predixApp.controller('SolarCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+        $scope.helloSolar = 'hello solar';
+    }]);
+
+    predixApp.controller('WindCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+        $scope.helloWind = 'hello wind';
+    }]);
+
+    predixApp.controller('Custom1Ctrl', ['$scope', '$rootScope', 'restService', function ($scope, $rootScope, restService) {
+        $scope.dataTableData = [
+            {
+                "index": 0,
+                "name": "Liz Grimes",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/enda/73.jpg",
+                "date": "Sun Aug 14 1994 03:27:03 GMT-0700 (PDT)"
+            },
+            {
+                "index": 1,
+                "name": "Frazier Lara",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/guillogo/73.jpg",
+                "date": "Tue May 24 1988 14:10:20 GMT-0700 (PDT)"
+            }
+        ];
+        console.log(restService.factoryData);
+    }]);
+
+
+
+    // christophFactory();
+    //
+    // function christophFactory() {
+    //     // $scope.helloFactory = "hello factory from Christoph";
+    //
+    //     console.log("before ajax");
+    //     $.ajax({
+    //         method: 'GET',
+    //         url: 'http://hello-python-ryan.run.aws-usw02-pr.ice.predix.io/hello',
+    //         success: function(data) {
+    //             console.log(data);
+    //         }
+    //     });
+    //     console.log("after ajax");
+    // };
+
+
     window.predixApp = predixApp;
 
     //Return the application  object

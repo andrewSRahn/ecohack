@@ -25,6 +25,7 @@ define([
         'predix.datasource',
         'px.ngBindPolymer'
     ]);
+    
 
     /**
      * Main Controller
@@ -40,7 +41,9 @@ define([
             session: {},
             tabs: [
                 {icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
-		{label: 'Custom tab1'}
+                {state: 'custom1', label: 'Custom tab1'},
+                {state: 'wind', label: 'Wind'},
+                {state: 'solar', label: 'Solar'}
             ]
         };
 
@@ -60,9 +63,24 @@ define([
         //     }
         // });
     }]);
+    
+    
 
-
-    //Set on window for debugging
+	 predixApp.controller('SolarCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+		$scope.helloSolar = 'hello solar';	 
+		
+	 }]);
+	 
+	 predixApp.controller('WindCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+	 	$scope.helloWind = 'hello wind';
+	 	$scope.comingFromFactory = $scope.helloFactory;
+		console.writeline('hello console');
+	 }]);
+	 
+	 predixApp.factory(['$scope', '$rootScope', function ($scope, $rootScope) {
+	 	$scope.helloFactory = 'hello factory';
+	 }]);
+	 
     window.predixApp = predixApp;
 
     //Return the application  object
