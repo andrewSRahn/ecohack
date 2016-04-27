@@ -11,6 +11,50 @@ define(['angular', './sample-module'], function (angular, controllers) {
         success(function(data, status, headers, config) {
             $scope.tsData = data;
         }).error(function(data, status, headers, config) {});
+		
+		/*------ Start ---------*/
+		/*---- Edited by vrushank - Made function for graph change on text value change -----*/
+		  $scope.functionCall = function(){
+        			console.log('function called');
+		  		var val = $scope.value;
+		  		if(val !== null && val !== 0 && val !== ''){
+           var object= null;
+           var object = angular.copy($scope.tsData);
+           for(var i=0;i<object.length;i++){
+            object[i][1] = object[i][1]*val;
+        }
+        $scope.tsData = object;
+		  	}        
+        }
+        
+        $scope.functionName = function(){
+        	$scope.tsData = null;
+        	 $http({
+            method: 'GET',
+            url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
+        }).
+        success(function(data, status, headers, config) {
+        			console.log('success called');
+        		   $scope.tsData = data;    
+        		   $scope.functionCall()   
+        }).error(function(data, status, headers, config) {});
+        	
+        }
+ 
+ /*------ End ---------*/
+ 
+ /* ----  Start --------*/
+ /*----- Edited by Vrushank - For rest api from another server ------*/
+	$http({
+		method : 'GET',
+		url : 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/'
+	 	}).
+        success(function(data, status, headers, config) {
+            $scope.greeting = data;
+            console.log(data);
+        });
+		
+		/*---- End -------*/
 
         /*PredixAssetService.getAssetsByParentId('root').then(function (initialContext) {
 

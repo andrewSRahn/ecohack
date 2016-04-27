@@ -7,6 +7,22 @@
    </px-card>
    <px-card>
       <br>
+	  /*---- Start : Changes by vrushank -----*/
+	  <div>
+      <label>Solar Input :</label> <input type="number" ng-model="value" name="solarInput" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+      <button ng-click="functionName()" name="Submit" >Submit</button>
+      <script>
+    // WRITE THE VALIDATION SCRIPT IN THE HEAD TAG.
+    function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+        if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+            return false;
+
+        return true;
+    }    
+	</script>
+      </div>
+/*------ End --------*/
       <px-dashboard view-service-base-url="{{viewServiceBaseUrl}}" selected-deck-id="{{selectedDeck.id}}" context="{{context}}"></px-dashboard>
       <px-chart>
          <px-chart-series-line id="Time Series Plot of Data" data={{tsData}}>
