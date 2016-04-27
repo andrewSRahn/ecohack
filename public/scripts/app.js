@@ -48,10 +48,11 @@ define([
             name: 'Predix Seed',
             session: {},
             tabs: [
-                {icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
-                {state: 'custom1', label: 'Custom tab1'},
+                //{icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
+                {state: 'solar', label: 'Solar'},
                 {state: 'wind', label: 'Wind'},
-                {state: 'solar', label: 'Solar'}
+                {state: 'predictions', label: 'Predictions by day'},
+                {state: 'pi', label: 'Raw pi data'}
             ]
         };
 
@@ -82,23 +83,13 @@ define([
         $scope.helloWind = 'hello wind';
     }]);
 
-    predixApp.controller('Custom1Ctrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
-        $scope.dataTableData = [
-            {
-                "index": 0,
-                "name": "Liz Grimes",
-                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/enda/73.jpg",
-                "date": "Sun Aug 14 1994 03:27:03 GMT-0700 (PDT)"
-            },
-            {
-                "index": 1,
-                "name": "Frazier Lara",
-                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/guillogo/73.jpg",
-                "date": "Tue May 24 1988 14:10:20 GMT-0700 (PDT)"
-            }
-        ];
+    predixApp.controller('PiCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
+
     }]);
 
+    predixApp.controller('PredictionsCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
+
+    }]);
 
 
     // christophFactory();
