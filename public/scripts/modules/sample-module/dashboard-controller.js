@@ -11,40 +11,34 @@ define(['angular', './sample-module'], function (angular, controllers) {
         success(function(data, status, headers, config) {
             $scope.tsData = data;
         }).error(function(data, status, headers, config) {});
-		
-		/*------ Start ---------*/
-		/*---- Edited by vrushank - Made function for graph change on text value change -----*/
-		  $scope.functionCall = function(){
-        			console.log('function called');
-		  		var val = $scope.value;
-		  		if(val !== null && val !== 0 && val !== ''){
-           var object= null;
-           var object = angular.copy($scope.tsData);
-           for(var i=0;i<object.length;i++){
-            object[i][1] = object[i][1]*val;
+
+    $scope.functionCall = function(){
+        console.log('function called');
+        var val = $scope.value;
+        if(val !== null && val !== 0 && val !== ''){
+        var object= null;
+        var object = angular.copy($scope.tsData);
+        for(var i=0;i<object.length;i++){
+        object[i][1] = object[i][1]*val;
+    }
+    $scope.tsData = object;
         }
-        $scope.tsData = object;
-		  	}        
-        }
-        
-        $scope.functionName = function(){
-        	$scope.tsData = null;
-        	 $http({
-            method: 'GET',
-            url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
-        }).
-        success(function(data, status, headers, config) {
-        			console.log('success called');
-        		   $scope.tsData = data;    
-        		   $scope.functionCall()   
-        }).error(function(data, status, headers, config) {});
-        	
-        }
- 
- /*------ End ---------*/
- 
- /* ----  Start --------*/
- /*----- Edited by Vrushank - For rest api from another server ------*/
+    }
+
+    $scope.functionName = function(){
+        $scope.tsData = null;
+         $http({
+        method: 'GET',
+        url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
+    }).
+    success(function(data, status, headers, config) {
+                console.log('success called');
+               $scope.tsData = data;
+               $scope.functionCall()
+    }).error(function(data, status, headers, config) {});
+
+    }
+
 	$http({
 		method : 'GET',
 		url : 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/'
@@ -53,9 +47,9 @@ define(['angular', './sample-module'], function (angular, controllers) {
             $scope.greeting = data;
             console.log(data);
         });
-		
-		/*---- End -------*/
 
+        $scope.myData = [[1397102460000, 0.99], [1397139660000, 0.92], [1397177400000, 0.97], [1397228040000, 1.12], [1397248260000, 1.09], [1397291280000, 1], [1397318100000, 0.99], [1397342100000, 0.75], [1397390820000, 1.11], [1397408100000, 1.03], [1397458800000, 0.84], [1397522940000, 0.99], [1397542800000, 0.96], [1397640960000, 0.88], [1397663100000, 0.79], [1397700000000, 0.85], [1397753040000, 1.03], [1397772540000, 0.93], [1397794860000, 0.88], [1397813580000, 0.88], [1397890680000, 0.91]];
+        $scope.myData2 = [[1397102460000, 3], [1397139660000, 3], [1397177400000, 3], [1397228040000, 3], [1397248260000, 3], [1397291280000, 3], [1397318100000, 3], [1397342100000, 3], [1397390820000, 3], [1397408100000, 3], [1397458800000, 3], [1397522940000, 3], [1397542800000, 3], [1397640960000, 3], [1397663100000, 3], [1397700000000, 3], [1397753040000, 3], [1397772540000, 3], [1397794860000, 3], [1397813580000, 3], [1397890680000, 3]];
         /*PredixAssetService.getAssetsByParentId('root').then(function (initialContext) {
 
             //pre-select the 1st asset

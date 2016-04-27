@@ -1,25 +1,46 @@
 <div id="Solar" ng-controller="SolarCtrl">>
-	<px-card>
-		<h1>Hello world</h1>
-	</px-card>   
-	<px-card>
-		<h3>px-simple-line-chart</h3>
-		<px-simple-line-chart
-			min="1"
-			max="6"
-			columns="20"
-			rows="20"
-			min-label="min-label"
-			max-label="max-label"
-			line-data="[ [1,2], [2,3], [3,4] ]"
-			threshold="3"
-			threshold-label="Custom Label"
-			width="480"
-			height="480">
-		</px-simple-line-chart>
-	</px-card>
-	<px-card>
-		<p>{{helloSolar}}</p>
-	</px-card>
+    <px-card>
+        <h2>Consumption</h2>
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+            <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="with demand cost" axis-id="firstAxis" data="{{myData}}">
+            </px-chart-series-line>
+            <px-chart-series-line id="without demand cost" axis-id="anotherAxis" data="{{myData2}}">
+            </px-chart-series-line>
+        </px-chart>
+    </px-card>
+    <px-card>
+        <h2>Consumption with potential energy</h2>
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+            <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{myData}}">
+            </px-chart-series-line>
+            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{myData2}}">
+            </px-chart-series-line>
+            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{myData2}}">
+            </px-chart-series-line>
+        </px-chart>
+    </px-card>
+    <px-card>
+        <h2>Cost with potential energy</h2>
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+            <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{myData}}">
+            </px-chart-series-line>
+            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{myData2}}">
+            </px-chart-series-line>
+            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{myData2}}">
+            </px-chart-series-line>
+        </px-chart>
+    </px-card>
+    <px-card>
+        <h2>Eloquent summary</h2>
 
+    </px-card>
 </div>

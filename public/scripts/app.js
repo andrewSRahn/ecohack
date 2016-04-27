@@ -27,12 +27,20 @@ define([
     ]);
 
 
+    predixApp.factory('restfulFactory', function () {
+        var factory = {};
+        // factory.routes =
+        //     uiRest: $rootScope('http://hello-python-ryan.run.aws-usw02-pr.ice.predix.io/hello', {}) };
+        console.log('hello from factory');
+        return factory;
+    });
+
     /**
      * Main Controller
      * This controller is the top most level controller that allows for all
      * child controllers to access properties defined on the $rootScope.
      */
-    predixApp.controller('MainCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    predixApp.controller('MainCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
 
         //Global application object
         window.App = $rootScope.App = {
@@ -64,27 +72,17 @@ define([
         // });
     }]);
 
-    predixApp.factory('restService', function ($scope, $rootScope) {
-        var factory = {};
-        // factory.routes = {
-        //     uiRest: $rootScope('http://hello-python-ryan.run.aws-usw02-pr.ice.predix.io/hello', {})
-        // };
 
-        factoryData = 'hello factoryData';
-
-        console.log('hello from factory');
-        return factory;
-    });
-
-    predixApp.controller('SolarCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    predixApp.controller('SolarCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
         $scope.helloSolar = 'hello solar';
+        console.log($scope.factoryData);
     }]);
 
-    predixApp.controller('WindCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    predixApp.controller('WindCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
         $scope.helloWind = 'hello wind';
     }]);
 
-    predixApp.controller('Custom1Ctrl', ['$scope', '$rootScope', 'restService', function ($scope, $rootScope, restService) {
+    predixApp.controller('Custom1Ctrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
         $scope.dataTableData = [
             {
                 "index": 0,
@@ -99,7 +97,6 @@ define([
                 "date": "Tue May 24 1988 14:10:20 GMT-0700 (PDT)"
             }
         ];
-        console.log(restService.factoryData);
     }]);
 
 
