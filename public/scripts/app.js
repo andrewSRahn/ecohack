@@ -117,7 +117,7 @@ define([
             $scope.windSpeed = data[8].reverse();
             $scope.solarWithoutEnergyGeneration = data[0];
             //$scope.solarConsumptionWithDemandCost =
-
+            $scope.solarCalcResult1 = $scope.solarEnergyGeneration;
 
         }).error(function(data, status, headers, config) {});
 
@@ -154,7 +154,7 @@ define([
 
                 }
 
-                $scope.solarEnergyGeneration = object;
+                $scope.solarCalcResult1 = object;
 
 
             }
@@ -170,8 +170,6 @@ define([
             var val = $scope.value;
 
             if(val !== null && val !== 0 && val !== ''){
-
-
                 var object= null;
                 var object = angular.copy($scope.solarWithoutEnergyGeneration);
                 for(var i=0;i<object.length;i++){
