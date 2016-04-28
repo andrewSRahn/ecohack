@@ -190,31 +190,68 @@ define([
 
 
     predixApp.controller('WindCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
-        $scope.withoutEnergyGeneration = null;
-        $scope.energyGeneration = null;
-        $scope.consumptionMinusGeneration = null;
-        $scope.consuptionWithDemandCost = null;
-        $scope.consuptionWithoutDemandCost = null;
-        $scope.withEnergyGeneration = null;
 
+        $scope.solarConsumptionWithoutDemandCost = null;
+        $scope.solarConsumptionWithDemandCost = null;
+        $scope.solarWithoutEnergyGeneration = null;
+        $scope.solarEnergyGeneration = null;
+        $scope.solarConsumptionMinusGeneration = null;
+        // $scope.solarWithEnergyGeneration = null;
+        $scope.solar = null;
+        $scope.costWithDemand = null;
+        $scope.costWithoutDemand = null;
+        $scope.solarLux = null;
+        $scope.temperature = null;
+        $scope.humidity = null;
+        $scope.windPower = null;
+
+        $http({
+            method: 'GET',
+            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
+        }).
+        success(function(data, status, headers, config) {
+            console.log('end point reached');
+
+            console.log(typeof(data));
+
+            data = eval(data);
+
+            $scope.timestamp = data[0][0][0];
+
+
+            $scope.etConsumption = data[0].reverse();
+            $scope.solarConsumptionWithoutDemandCost = data[0];
+            $scope.costWithDemand = data[1].reverse();
+            $scope.costWithoutDemand = data[2].reverse();
+            $scope.solarEnergyGeneration = data[3].reverse();
+            $scope.solarLux = data[4].reverse();
+            $scope.temperature = data[5].reverse();
+            $scope.pressure = data[6].reverse();
+            $scope.humidity = data[7].reverse();
+            $scope.windPower = data[8].reverse();
+            $scope.solarWithoutEnergyGeneration = data[0];
+            //$scope.solarConsumptionWithDemandCost =
+
+            $scope.windCalcResult = $scope.windPower;
+        }).error(function(data, status, headers, config) {});
         /*---- Edited by Vrushank -----*/
 
 
 
-        // $scope.functionWindWithInputChange1 = function(){
-        //     //console.log('function called');
-        //     var val = $scope.value;
-        //
-        //     if(val !== null && val !== 0 && val !== ''){
-        //         var object= null;
-        //         var object = angular.copy($scope.energyGeneration);
-        //         for(var i=0;i<object.length;i++){
-        //             object[i][1] = object[i][1]*val;
-        //
-        //         }
-        //         $scope.energyGeneration = object;
-        //     }
-        // }
+         $scope.functionWindWithInputChange1 = function(){
+             //console.log('function called');
+             var val = $scope.value;
+        
+             if(val !== null && val !== 0 && val !== ''){
+                 var object= null;
+                 var object = angular.copy($scope.windPower);
+                 for(var i=0;i<object.length;i++){
+                     object[i][1] = object[i][1]*val;
+        
+                 }
+                 $scope.windCalcResult = object;
+             }
+         }
 
 
     }]);

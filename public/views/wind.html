@@ -16,9 +16,9 @@
             <px-chart-controls data-controls></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost" axis-id="firstAxis" data="{{consuptionWithoutDemandCost}}">
+            <px-chart-series-line id="with demand cost" axis-id="firstAxis" data="{{costWithoutDemand}}">
             </px-chart-series-line>
-            <px-chart-series-line id="without demand cost" axis-id="anotherAxis" data="{{consuptionWithDemandCost}}">
+            <px-chart-series-line id="without demand cost" axis-id="anotherAxis" data="{{costWithDemand}}">
             </px-chart-series-line>
         </px-chart>
     </px-card>
@@ -26,35 +26,37 @@
         <h2>Wind energy generation</h2>
         <div>
             <label>Wind turbine surface area(m^2):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-            <button ng-click="functionSolarData2()" name="Submit" >Submit</button>
+            <button ng-click="functionWindWithInputChange1()" name="Submit" >Submit</button>
         </div>
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{energyGeneration}}">
+            <px-chart-series-line id="Generated Power" axis-id="firstAxis" data="{{windCalcResult}}">
             </px-chart-series-line>
+<!--
             <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{consumptionMinusGeneration}}">
             </px-chart-series-line>
             <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{consumptionMinusGeneration}}">
             </px-chart-series-line>
+-->
         </px-chart>
     </px-card>
     <px-card>
         <h2>Cost impact</h2>
         <div>
             <label>Wind turbine surface area(m^2):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-            <button ng-click="functionSolarData2()" name="Submit" >Submit</button>
+            <button ng-click="functionWindWithInputChange1()" name="Submit" >Submit</button>
         </div>
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{withoutEnergyGeneration}}">
+            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{costWithDemand}}">
             </px-chart-series-line>
             <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{withEnergyGeneration}}">
             </px-chart-series-line>
-            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{Data1}}">
+            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{windCalcResult}}">
             </px-chart-series-line>
         </px-chart>
     </px-card>
