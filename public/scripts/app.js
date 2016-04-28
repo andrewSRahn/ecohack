@@ -50,7 +50,7 @@ define([
                 //{icon: 'fa-tachometer', state: 'dashboards', label: 'EcoDashboard'},
                 {state: 'solar', label: 'Solar'},
                 {state: 'wind', label: 'Wind'},
-                {state: 'predictions', label: 'Predictions by day'},
+                // {state: 'predictions', label: 'Predictions by day'},
                 {state: 'pi', label: 'Raw pi data'}
             ]
         };
@@ -76,6 +76,7 @@ define([
 
 
     predixApp.controller('SolarCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
+
         $scope.solarConsumptionWithoutDemandCost = null;
         $scope.solarConsumptionWithDemandCost = null;
         $scope.solarWithoutEnergyGeneration = null;
@@ -90,8 +91,6 @@ define([
         $scope.humidity = null;
         $scope.windSpeed = null;
 
-
-
         $http({
             method: 'GET',
             url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
@@ -102,26 +101,22 @@ define([
             console.log(typeof(data));
 
             data = eval(data);
-            
+
             $scope.timestamp = data[0][0][0];
-            
 
-            //$scope
-            console.log(typeof(data));
 
-            $scope.solarConsumptionWithoutDemandCost = data[0];
-            $scope.costWithDemand = data[1];
-            $scope.costWithoutDemand = data[2];
-            $scope.solar = data[3];
-            $scope.solarLux = data[4];
-            $scope.temperature = data[5];
-            $scope.pressure = data[6];
-            $scope.humidity = data[7];
-            $scope.windSpeed = data[8];
+
+            $scope.solarConsumptionWithoutDemandCost = data[0].reverse();
+            $scope.costWithDemand = data[1].reverse();
+            $scope.costWithoutDemand = data[2].reverse();
+            $scope.solar = data[3].reverse();
+            $scope.solarLux = data[4].reverse();
+            $scope.temperature = data[5].reverse();
+            $scope.pressure = data[6].reverse();
+            $scope.humidity = data[7].reverse();
+            $scope.windSpeed = data[8].reverse();
             $scope.solarWithoutEnergyGeneration = $scope.solarConsumptionWithoutDemandCost;
             //$scope.solarConsumptionWithDemandCost =
-            console.log($scope.solarWithoutEnergyGeneration[0]);
-            console.log($scope.solarWithoutEnergyGeneration[1]);
 
 
         }).error(function(data, status, headers, config) {});
@@ -135,9 +130,6 @@ define([
         success(function(data, status, headers, config) {
 
             $scope.solarConsuptionWithDemandCost = data;
-            console.log(typeof(data));
-            console.log(data[0]);
-            console.log(data[1]);
         }).error(function(data, status, headers, config) {});
         /*----------  End function -----------*/
 

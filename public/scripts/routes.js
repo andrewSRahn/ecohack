@@ -29,11 +29,11 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 templateUrl: 'views/wind.html',
                 controller: 'WindCtrl'
             })
-            .state('predictions', {
-                url: '/predictions',
-                templateUrl: 'views/predictions.html',
-                controller: 'PredictionsCtrl'
-            })
+            // .state('predictions', {
+            //     url: '/predictions',
+            //     templateUrl: 'views/predictions.html',
+            //     controller: 'PredictionsCtrl'
+            // })
             .state('pi', {
                 url: '/pi',
                 templateUrl: 'views/pi.html',
