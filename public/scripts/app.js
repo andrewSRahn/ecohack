@@ -31,7 +31,6 @@ define([
         var factory = {};
         // factory.routes =
         //     uiRest: $rootScope('http://hello-python-ryan.run.aws-usw02-pr.ice.predix.io/hello', {}) };
-        console.log('hello from factory');
         return factory;
     });
 
@@ -56,6 +55,8 @@ define([
             ]
         };
 
+
+
         // $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
         //     if (angular.isObject(error) && angular.isString(error.code)) {
         //         switch (error.code) {
@@ -74,21 +75,136 @@ define([
     }]);
 
 
-    predixApp.controller('SolarCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
-        $scope.helloSolar = 'hello solar';
-        console.log($scope.factoryData);
+    predixApp.controller('SolarCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
+        $scope.solarConsuptionWithoutDemandCost = null;
+        $scope.solarConsuptionWithDemandCost = null;
+        $scope.solarWithoutEnergyGeneration = null;
+        $scope.solarEnergyGeneration = null;
+        $scope.solarConsumptionMinusGeneration = null;
+        $scope.solarWithEnergyGeneration = null;
+
+
+        $http({
+            method: 'GET',
+            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel' // change this url to new json file location
+            //url: '../sample-data/MyETValue.json'
+        }).
+        success(function(data, status, headers, config) {
+            console.log('end point reached');
+            console.log(typeof(data));
+            
+            $scope.solarEnergyGeneration = data;
+
+
+        }).error(function(data, status, headers, config) {});
+
+        // /*-------- Start Function for Consumption With demand -cost-----*/
+        // $http({
+        //     method: 'GET',
+        //     url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
+        //     //url: '../sample-data/MyETValue.json'
+        // }).
+        // success(function(data, status, headers, config) {
+        //
+        //     $scope.solarConsuptionWithOutDemandCost = data;
+        //
+        // }).error(function(data, status, headers, config) {});
+        // /*----------  End function -----------*/
+
+
+
+        //
+        // $scope.functionSolarWithInputChange1 = function(){
+        //
+        //     //$scope.functionName()
+        //
+        //     //console.log('function called');
+        //     var val = $scope.value;
+        //
+        //     if(val !== null && val !== 0 && val !== ''){
+        //
+        //
+        //         var object= null;
+        //         var object = angular.copy($scope.solarEnergyGeneration);
+        //         for(var i=0;i<object.length;i++){
+        //             object[i][1] = object[i][1]*val;
+        //
+        //         }
+        //
+        //         $scope.solarEnergyGeneration = object;
+        //
+        //
+        //     }
+        // }
+        //
+        //
+        //
+        // $scope.functionSolarWithInputChange2 = function(){
+        //
+        //     //$scope.functionName()
+        //
+        //     //console.log('function called');
+        //     var val = $scope.value;
+        //
+        //     if(val !== null && val !== 0 && val !== ''){
+        //
+        //
+        //         var object= null;
+        //         var object = angular.copy($scope.solarWithoutEnergyGeneration);
+        //         for(var i=0;i<object.length;i++){
+        //             object[i][1] = object[i][1]*val;
+        //
+        //         }
+        //
+        //         $scope.solarWithoutEnergyGeneration= object;
+        //
+        //
+        //     }
+        // }
+
+
     }]);
 
-    predixApp.controller('WindCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
-        $scope.helloWind = 'hello wind';
+
+    predixApp.controller('WindCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
+        $scope.withoutEnergyGeneration = null;
+        $scope.energyGeneration = null;
+        $scope.consumptionMinusGeneration = null;
+        $scope.consuptionWithDemandCost = null;
+        $scope.consuptionWithoutDemandCost = null;
+        $scope.withEnergyGeneration = null;
+
+        /*---- Edited by Vrushank -----*/
+
+
+
+        // $scope.functionWindWithInputChange1 = function(){
+        //     //console.log('function called');
+        //     var val = $scope.value;
+        //
+        //     if(val !== null && val !== 0 && val !== ''){
+        //         var object= null;
+        //         var object = angular.copy($scope.energyGeneration);
+        //         for(var i=0;i<object.length;i++){
+        //             object[i][1] = object[i][1]*val;
+        //
+        //         }
+        //         $scope.energyGeneration = object;
+        //     }
+        // }
+
+
     }]);
+
 
     predixApp.controller('PiCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
 
     }]);
 
     predixApp.controller('PredictionsCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
-
+        $scope.displayMonthYear = 'January';
+        $scope.firstRangeDate = '1';
+        $scope.secondeRangeDate = '2';
     }]);
 
 

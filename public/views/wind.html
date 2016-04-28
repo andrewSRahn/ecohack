@@ -1,41 +1,56 @@
 <div id="Wind" ng-controller="WindCtrl">
+    <script>
+        // WRITE THE VALIDATION SCRIPT IN THE HEAD TAG.
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
     <px-card>
         <h2>Consumption</h2>
+
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost" axis-id="firstAxis" data="{{myData}}">
+            <px-chart-series-line id="with demand cost" axis-id="firstAxis" data="{{consuptionWithoutDemandCost}}">
             </px-chart-series-line>
-            <px-chart-series-line id="without demand cost" axis-id="anotherAxis" data="{{myData2}}">
+            <px-chart-series-line id="without demand cost" axis-id="anotherAxis" data="{{consuptionWithDemandCost}}">
             </px-chart-series-line>
         </px-chart>
     </px-card>
     <px-card>
         <h2>Consumption with potential energy</h2>
+        <label>Wind  :</label> <input type="text" ng-model="value" name="windInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <button ng-click="functionWindData2()" name="Submit" >Submit</button>
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{myData}}">
+            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{energyGeneration}}">
             </px-chart-series-line>
-            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{myData2}}">
+            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{consumptionMinusGeneration}}">
             </px-chart-series-line>
-            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{myData2}}">
+            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{consumptionMinusGeneration}}">
             </px-chart-series-line>
         </px-chart>
     </px-card>
     <px-card>
         <h2>Cost with potential energy</h2>
+        <label>Wind  :</label> <input type="text" ng-model="value" name="windInput1" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <button ng-click="functionWindData1()" name="Submit" >Submit</button>
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
             <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
             <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{myData}}">
+            <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{withoutEnergyGeneration}}">
             </px-chart-series-line>
-            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{myData2}}">
+            <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{withEnergyGeneration}}">
             </px-chart-series-line>
-            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{myData2}}">
+            <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{Data1}}">
             </px-chart-series-line>
         </px-chart>
     </px-card>
