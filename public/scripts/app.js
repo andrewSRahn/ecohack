@@ -80,7 +80,7 @@ define([
         $scope.solarConsumptionWithoutDemandCost = null;
         $scope.solarConsumptionWithDemandCost = null;
         $scope.solarWithoutEnergyGeneration = null;
-        // $scope.solarEnergyGeneration = null;
+        $scope.solarEnergyGeneration = null;
         $scope.solarConsumptionMinusGeneration = null;
         // $scope.solarWithEnergyGeneration = null;
         $scope.solar = null;
@@ -105,23 +105,23 @@ define([
             $scope.timestamp = data[0][0][0];
 
 
-
-            $scope.solarConsumptionWithoutDemandCost = data[0].reverse();
+            $scope.etConsumption = data[0].reverse();
+            $scope.solarConsumptionWithoutDemandCost = data[0];
             $scope.costWithDemand = data[1].reverse();
             $scope.costWithoutDemand = data[2].reverse();
-            $scope.solar = data[3].reverse();
+            $scope.solarEnergyGeneration = data[3].reverse();
             $scope.solarLux = data[4].reverse();
             $scope.temperature = data[5].reverse();
             $scope.pressure = data[6].reverse();
             $scope.humidity = data[7].reverse();
             $scope.windSpeed = data[8].reverse();
-            $scope.solarWithoutEnergyGeneration = $scope.solarConsumptionWithoutDemandCost;
+            $scope.solarWithoutEnergyGeneration = data[0];
             //$scope.solarConsumptionWithDemandCost =
 
 
         }).error(function(data, status, headers, config) {});
 
-        /*-------- Start Function for Consumption With demand -cost-----*/
+        /*-------- Start Function for Consumption With demand -cost
         $http({
             method: 'GET',
             url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
@@ -131,6 +131,7 @@ define([
 
             $scope.solarConsuptionWithDemandCost = data;
         }).error(function(data, status, headers, config) {});
+-----*/
         /*----------  End function -----------*/
 
 
