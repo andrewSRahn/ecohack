@@ -137,24 +137,23 @@ define([
 
 
 
-        $scope.functionSolarWithInputChange1 = function(){
+        $scope.functionSolarWithInputChange1 = function(val, data){
 
             //$scope.functionName()
 
             //console.log('function called');
-            var val = $scope.value;
 
             if(val !== null && val !== 0 && val !== ''){
 
 
                 var object= null;
-                var object = angular.copy($scope.solarEnergyGeneration);
+                var object = angular.copy(data);
                 for(var i=0;i<object.length;i++){
                     object[i][1] = object[i][1]*val;
 
                 }
 
-                $scope.solarCalcResult1 = object;
+                return object;
 
 
             }
@@ -239,13 +238,13 @@ define([
          $scope.functionWindWithInputChange1 = function(){
              //console.log('function called');
              var val = $scope.value;
-        
+
              if(val !== null && val !== 0 && val !== ''){
                  var object= null;
                  var object = angular.copy($scope.windPower);
                  for(var i=0;i<object.length;i++){
                      object[i][1] = object[i][1]*val;
-        
+
                  }
                  $scope.windCalcResult = object;
              }

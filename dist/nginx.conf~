@@ -127,18 +127,18 @@ http
         #}
 
         # Any Api Call made should have bearer token set using set_access_token.lua file
-        #location /api{
-        #    access_by_lua_file <%= ENV["APP_ROOT"] %>/set_access_token.lua;
+        location /api{
+            access_by_lua_file <%= ENV["APP_ROOT"] %>/set_access_token.lua;
 
             # Refer https://github.com/PredixDev/predix-seed/wiki/Reading-VCAP_SERVICES-in-client-side-or-nginx-for-proxying for details
-            # location /api/view-service
-            #{
-            #  proxy_set_header    Authorization   $user_token;
-              proxy_set_header    predix-zone-id   "<%= ENV["vcap_service_600639dd-55e1-4460-9546-b79cd30bf8ab"] %>";
-            #  rewrite             /api/view-service/(.*) /api/$1 break;
-              proxy_pass  "<%= ENV["vcap_service_https://predix-views.run.aws-usw02-pr.ice.predix.io"] %>";
-          #  }
-        #}
+            location /api/view-service
+            {
+              proxy_set_header    Authorization   $user_token;
+              proxy_set_header    predix-zone-id   "600639dd-55e1-4460-9546-b79cd30bf8ab";
+              rewrite             /api/view-service/(.*) /api/$1 break;
+              proxy_pass  "https://predix-views.run.aws-usw02-pr.ice.predix.io";
+            }
+        }
 
 
         location / {
