@@ -14,7 +14,7 @@
 
     <px-chart tooltip-type="condensed" series-events-width="1">
 
-        <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+        <px-chart-controls data-controls></px-chart-controls>
         <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
         <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
         <px-chart-series-line id="without demand cost" axis-id="firstAxis" data="{{solarConsuptionWithoutDemandCost}}">
@@ -25,8 +25,12 @@
 </px-card>
 <px-card>
     <h2>Consumption with potential energy</h2>
+    <div>
+        <label>Solar  :</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <button ng-click="functionSolarData2()" name="Submit" >Submit</button>
+    </div>
     <px-chart tooltip-type="condensed" series-events-width="1">
-        <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+        <px-chart-controls data-controls></px-chart-controls>
         <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
         <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
         <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{solarEnergyGeneration}}">
@@ -36,16 +40,17 @@
         <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{solarConsumptionMinusGeneration}}">
         </px-chart-series-line>
     </px-chart>
-    <div>
-        <label>Solar  :</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-        <button ng-click="functionSolarData2()" name="Submit" >Submit</button>
-    </div>
+
 
 </px-card>
 <px-card>
     <h2>Cost with potential energy</h2>
+    <div>
+        <label>Solar panel (meter squared):</label> <input type="text" ng-model="value" name="solarInput1" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <button ng-click="functionSolarData1()" name="Submit" >Submit</button>
+    </div>
     <px-chart tooltip-type="condensed" series-events-width="1">
-        <px-chart-controls data-controls show-date-range="true"></px-chart-controls>
+        <px-chart-controls data-controls></px-chart-controls>
         <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
         <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
         <px-chart-series-line id="with demand cost2" axis-id="firstAxis" data="{{solarWithoutEnergyGeneration}}">
@@ -55,14 +60,7 @@
         <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{solarWithEnergyGeneration}}">
         </px-chart-series-line>
     </px-chart>
-    <div>
-        <label>Solar  :</label> <input type="text" ng-model="value" name="solarInput1" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-        <button ng-click="functionSolarData1()" name="Submit" >Submit</button>
-    </div>
 
-</px-card>
-<px-card>
-    <h2>Eloquent summary</h2>
 
 </px-card>
 </div>

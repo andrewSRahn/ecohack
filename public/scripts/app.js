@@ -78,89 +78,96 @@ define([
     predixApp.controller('SolarCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
         $scope.solarConsuptionWithoutDemandCost = null;
         $scope.solarConsuptionWithDemandCost = null;
-        $scope.solarWithoutEnergyGeneration = null;
-        $scope.solarEnergyGeneration = null;
+        // $scope.solarWithoutEnergyGeneration = null;
+        // $scope.solarEnergyGeneration = null;
         $scope.solarConsumptionMinusGeneration = null;
-        $scope.solarWithEnergyGeneration = null;
+        // $scope.solarWithEnergyGeneration = null;
 
 
         $http({
             method: 'GET',
-            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel' // change this url to new json file location
-            //url: '../sample-data/MyETValue.json'
+            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
         }).
         success(function(data, status, headers, config) {
             console.log('end point reached');
+
             console.log(typeof(data));
-            
-            $scope.solarEnergyGeneration = data;
+
+            data = eval(data);
+
+            $scope
+            console.log(typeof(data));
+
+            $scope.solarConsumptionWithoutDemandCost = data;
 
 
         }).error(function(data, status, headers, config) {});
 
-        // /*-------- Start Function for Consumption With demand -cost-----*/
-        // $http({
-        //     method: 'GET',
-        //     url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
-        //     //url: '../sample-data/MyETValue.json'
-        // }).
-        // success(function(data, status, headers, config) {
-        //
-        //     $scope.solarConsuptionWithOutDemandCost = data;
-        //
-        // }).error(function(data, status, headers, config) {});
-        // /*----------  End function -----------*/
+        /*-------- Start Function for Consumption With demand -cost-----*/
+        $http({
+            method: 'GET',
+            url: '../sample-data/core-vibe-rear-cruise.json' // change this url to new json file location
+            //url: '../sample-data/MyETValue.json'
+        }).
+        success(function(data, status, headers, config) {
+
+            $scope.solarConsuptionWithDemandCost = data;
+            console.log(typeof(data));
+            console.log(data[0]);
+            console.log(data[1]);
+        }).error(function(data, status, headers, config) {});
+        /*----------  End function -----------*/
 
 
 
-        //
-        // $scope.functionSolarWithInputChange1 = function(){
-        //
-        //     //$scope.functionName()
-        //
-        //     //console.log('function called');
-        //     var val = $scope.value;
-        //
-        //     if(val !== null && val !== 0 && val !== ''){
-        //
-        //
-        //         var object= null;
-        //         var object = angular.copy($scope.solarEnergyGeneration);
-        //         for(var i=0;i<object.length;i++){
-        //             object[i][1] = object[i][1]*val;
-        //
-        //         }
-        //
-        //         $scope.solarEnergyGeneration = object;
-        //
-        //
-        //     }
-        // }
-        //
-        //
-        //
-        // $scope.functionSolarWithInputChange2 = function(){
-        //
-        //     //$scope.functionName()
-        //
-        //     //console.log('function called');
-        //     var val = $scope.value;
-        //
-        //     if(val !== null && val !== 0 && val !== ''){
-        //
-        //
-        //         var object= null;
-        //         var object = angular.copy($scope.solarWithoutEnergyGeneration);
-        //         for(var i=0;i<object.length;i++){
-        //             object[i][1] = object[i][1]*val;
-        //
-        //         }
-        //
-        //         $scope.solarWithoutEnergyGeneration= object;
-        //
-        //
-        //     }
-        // }
+
+        $scope.functionSolarWithInputChange1 = function(){
+
+            //$scope.functionName()
+
+            //console.log('function called');
+            var val = $scope.value;
+
+            if(val !== null && val !== 0 && val !== ''){
+
+
+                var object= null;
+                var object = angular.copy($scope.solarEnergyGeneration);
+                for(var i=0;i<object.length;i++){
+                    object[i][1] = object[i][1]*val;
+
+                }
+
+                $scope.solarEnergyGeneration = object;
+
+
+            }
+        }
+
+
+
+        $scope.functionSolarWithInputChange2 = function(){
+
+            //$scope.functionName()
+
+            //console.log('function called');
+            var val = $scope.value;
+
+            if(val !== null && val !== 0 && val !== ''){
+
+
+                var object= null;
+                var object = angular.copy($scope.solarWithoutEnergyGeneration);
+                for(var i=0;i<object.length;i++){
+                    object[i][1] = object[i][1]*val;
+
+                }
+
+                $scope.solarWithoutEnergyGeneration= object;
+
+
+            }
+        }
 
 
     }]);
