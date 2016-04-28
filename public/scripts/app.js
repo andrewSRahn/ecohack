@@ -76,12 +76,20 @@ define([
 
 
     predixApp.controller('SolarCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
-        $scope.solarConsuptionWithoutDemandCost = null;
-        $scope.solarConsuptionWithDemandCost = null;
-        // $scope.solarWithoutEnergyGeneration = null;
+        $scope.solarConsumptionWithoutDemandCost = null;
+        $scope.solarConsumptionWithDemandCost = null;
+        $scope.solarWithoutEnergyGeneration = null;
         // $scope.solarEnergyGeneration = null;
         $scope.solarConsumptionMinusGeneration = null;
         // $scope.solarWithEnergyGeneration = null;
+        $scope.solar = null;
+        $scope.costWithDemand = null;
+        $scope.costWithoutDemand = null;
+        $scope.solarLux = null;
+        $scope.temperature = null;
+        $scope.humidity = null;
+        $scope.windSpeed = null;
+
 
 
         $http({
@@ -94,11 +102,26 @@ define([
             console.log(typeof(data));
 
             data = eval(data);
+            
+            $scope.timestamp = data[0][0][0];
+            
 
-            $scope
+            //$scope
             console.log(typeof(data));
 
-            $scope.solarConsumptionWithoutDemandCost = data;
+            $scope.solarConsumptionWithoutDemandCost = data[0];
+            $scope.costWithDemand = data[1];
+            $scope.costWithoutDemand = data[2];
+            $scope.solar = data[3];
+            $scope.solarLux = data[4];
+            $scope.temperature = data[5];
+            $scope.pressure = data[6];
+            $scope.humidity = data[7];
+            $scope.windSpeed = data[8];
+            $scope.solarWithoutEnergyGeneration = $scope.solarConsumptionWithoutDemandCost;
+            //$scope.solarConsumptionWithDemandCost =
+            console.log($scope.solarWithoutEnergyGeneration[0]);
+            console.log($scope.solarWithoutEnergyGeneration[1]);
 
 
         }).error(function(data, status, headers, config) {});
