@@ -12,61 +12,75 @@
 <px-card>
     <h2>Energy consumption</h2>
 
-    <px-chart tooltip-type="condensed" series-events-width="1">
+    <px-data-table table-data="{{data}}"></px-data-table>
 
+    <px-chart tooltip-type="condensed" series-events-width="1">
         <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-        <px-chart-series-line id="et-consumption" axis-id="firstAxis" data="{{etConsumption}}">
-        </px-chart-series-line>
-<!--
-        <px-chart-series-line id="without demand cost" axis-id="firstAxis" data="{{solarConsuptionWithoutDemandCost}}">
-        </px-chart-series-line>
-        <px-chart-series-line id="with demand cost" axis-id="anotherAxis" data="{{solarConsuptionWithDemandCost}}">
-        </px-chart-series-line>
--->
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-yaxis"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-minus-demand-yaxis"
+                        opposite="true"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-series-line id="et-consumption (kilowatts)"
+                              axis-id="et-consumption-yaxis"
+                              data="{{etConsumption}}"></px-chart-series-line>
+        <px-chart-series-line id="et-consumption-minus-demand (kilowatts)"
+                              axis-id="et-consumption-minus-demand-yaxis"
+                              data="{{etConsumption}}"></px-chart-series-line>
     </px-chart>
 </px-card>
 <px-card>
     <h2>Solar energy generation</h2>
     <div>
-        <label>Solar panel size (m^2):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <label>Solar panel size (meter squared):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
         <button ng-click="functionSolarWithInputChange1()" name="Submit" >Submit</button>
     </div>
     <px-chart tooltip-type="condensed" series-events-width="1">
         <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-        <px-chart-series-line id="Energy watt(s)" axis-id="firstAxis" data="{{solarCalcResult1}}">
-        </px-chart-series-line>
-<!--
-        <px-chart-series-line id="without demand cost2" axis-id="anotherAxis" data="{{solarConsumptionMinusGeneration}}">
-        </px-chart-series-line>
-        <px-chart-series-line id="potential energy" axis-id="anotherAxis" data="{{solarConsumptionMinusGeneration}}">
-        </px-chart-series-line>
-
--->
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-yaxis2"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-yaxis title='{"text": "kilowatt per meter squared"}'
+                        id="solar-generated-yaxis"
+                        opposite="true"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-series-line id="et-consumption2 (kilowatts)"
+                              axis-id="et-consumption-yaxis2"
+                              data="{{etConsumption}}"></px-chart-series-line>
+        <px-chart-series-line id="solar-generated (kilowatts)"
+                              axis-id="solar-generated-yaxis"
+                              data="{{etConsumption}}"></px-chart-series-line>
     </px-chart>
-
-
 </px-card>
 <px-card>
     <h2>Cost impact</h2>
     <div>
-        <label>Solar panel size (m^2):</label> <input type="text" ng-model="value" name="solarInput1" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-        <button ng-click="functionSolarWithInputChange1(value, costWithoutDemand)" name="Submit" >Submit</button>
+        <label>Solar panel size (meter squared):</label>
+        <input type="text"
+               ng-model="value"
+               name="solarInput1"
+               onkeypress="javascript:return isNumber(event)" />
+        <!--ng-change="functionCall()"-->
+        <button ng-click="functionSolarWithInputChange1(value, costWithoutDemand)"
+                name="Submit">Submit</button>
     </div>
     <px-chart tooltip-type="condensed" series-events-width="1">
         <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "Left Axis"}' id="firstAxis" offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "Right Axis"}' id="anotherAxis" opposite="true" offset="10"></px-chart-yaxis>
-        <px-chart-series-line id="Cost with demand" axis-id="firstAxis" data="{{costWithDemand}}">
-        </px-chart-series-line>
-        <px-chart-series-line id="Cost with solar" axis-id="anotherAxis" data="{{costWithoutDemand}}">
-        </px-chart-series-line>
-
+        <px-chart-yaxis title='{"text": "Dollar"}'
+                        id="cost-without-solar-yaxis"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-yaxis title='{"text": "Dollar"}'
+                        id="cost-with-solar-yaxis"
+                        opposite="true"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-series-line id="cost-without-solar ($)"
+                              axis-id="cost-without-solar-yaxis"
+                              data="{{costWithDemand}}"></px-chart-series-line>
+        <px-chart-series-line id="cost-with-solar ($)"
+                              axis-id="cost-with-solar-yaxis"
+                              data="{{costWithoutDemand}}"></px-chart-series-line>
     </px-chart>
-
-
 </px-card>
 </div>
