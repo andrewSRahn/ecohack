@@ -12,7 +12,7 @@
     <px-card>
         <h2>Energy consumption</h2>
 
-        <px-data-table table-data="{{data}}"></px-data-table>
+        <!--<px-data-table table-data="{{data}}"></px-data-table>-->
 
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls></px-chart-controls>
@@ -68,10 +68,10 @@
         </div>
         <px-chart tooltip-type="condensed" series-events-width="1">
             <px-chart-controls data-controls></px-chart-controls>
-            <px-chart-yaxis title='{"text": "Dollar"}'
+            <px-chart-yaxis title='{"text": "$"}'
                             id="cost-without-wind-yaxis"
                             offset="10"></px-chart-yaxis>
-            <px-chart-yaxis title='{"text": "Dollar"}'
+            <px-chart-yaxis title='{"text": "$"}'
                             id="cost-with-wind-yaxis"
                             opposite="true"
                             offset="10"></px-chart-yaxis>

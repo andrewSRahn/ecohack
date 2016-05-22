@@ -1,3 +1,4 @@
+
 <div id="Solar" ng-controller="SolarCtrl">
 <script>
     // WRITE THE VALIDATION SCRIPT IN THE HEAD TAG.
@@ -9,51 +10,6 @@
         return true;
     }
 </script></div>
-<px-card>
-    <h2>Energy consumption</h2>
-
-    <px-data-table table-data="{{data}}"></px-data-table>
-
-    <px-chart tooltip-type="condensed" series-events-width="1">
-        <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "kilowatt"}'
-                        id="et-consumption-yaxis"
-                        offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "kilowatt"}'
-                        id="et-consumption-minus-demand-yaxis"
-                        opposite="true"
-                        offset="10"></px-chart-yaxis>
-        <px-chart-series-line id="et-consumption (kilowatts)"
-                              axis-id="et-consumption-yaxis"
-                              data="{{etConsumption}}"></px-chart-series-line>
-        <px-chart-series-line id="et-consumption-minus-demand (kilowatts)"
-                              axis-id="et-consumption-minus-demand-yaxis"
-                              data="{{etConsumption}}"></px-chart-series-line>
-    </px-chart>
-</px-card>
-<px-card>
-    <h2>Solar energy generation</h2>
-    <div>
-        <label>Solar panel size (meter squared):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
-        <button ng-click="functionSolarWithInputChange1()" name="Submit" >Submit</button>
-    </div>
-    <px-chart tooltip-type="condensed" series-events-width="1">
-        <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "kilowatt"}'
-                        id="et-consumption-yaxis2"
-                        offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "kilowatt per meter squared"}'
-                        id="solar-generated-yaxis"
-                        opposite="true"
-                        offset="10"></px-chart-yaxis>
-        <px-chart-series-line id="et-consumption2 (kilowatts)"
-                              axis-id="et-consumption-yaxis2"
-                              data="{{etConsumption}}"></px-chart-series-line>
-        <px-chart-series-line id="solar-generated (kilowatts)"
-                              axis-id="solar-generated-yaxis"
-                              data="{{etConsumption}}"></px-chart-series-line>
-    </px-chart>
-</px-card>
 <px-card>
     <h2>Cost impact</h2>
     <div>
@@ -68,19 +24,79 @@
     </div>
     <px-chart tooltip-type="condensed" series-events-width="1">
         <px-chart-controls data-controls></px-chart-controls>
-        <px-chart-yaxis title='{"text": "Dollar"}'
+        <px-chart-yaxis title='{"text": "$"}'
                         id="cost-without-solar-yaxis"
                         offset="10"></px-chart-yaxis>
-        <px-chart-yaxis title='{"text": "Dollar"}'
+        <px-chart-yaxis title='{"text": "$"}'
                         id="cost-with-solar-yaxis"
                         opposite="true"
                         offset="10"></px-chart-yaxis>
         <px-chart-series-line id="cost-without-solar ($)"
                               axis-id="cost-without-solar-yaxis"
-                              data="{{costWithDemand}}"></px-chart-series-line>
+                              data="{{etConsumption}}"></px-chart-series-line>
         <px-chart-series-line id="cost-with-solar ($)"
                               axis-id="cost-with-solar-yaxis"
                               data="{{costWithoutDemand}}"></px-chart-series-line>
+    </px-chart>
+</px-card>
+
+<px-card>
+    <h2>Energy consumption</h2>
+
+    <!--<px-data-table table-data="{{data}}"></px-data-table>-->
+
+    <px-chart tooltip-type="condensed" series-events-width="1">
+        <px-chart-controls data-controls></px-chart-controls>
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-yaxis"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-minus-demand-yaxis"
+                        opposite="true"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-series-line id="et-consumption (kilowatts)"
+                              axis-id="et-consumption-yaxis"
+                              data="{{costWithoutDemand}}"></px-chart-series-line>
+        <px-chart-series-line id="et-consumption-minus-demand (kilowatts)"
+                              axis-id="et-consumption-minus-demand-yaxis"
+                              data="{{solarEnergyGeneration}}"></px-chart-series-line>
+
+        <!--$scope.solarConsumptionWithoutDemandCost = null;-->
+        <!--$scope.solarConsumptionWithDemandCost = null;-->
+        <!--$scope.solarWithoutEnergyGeneration = null;-->
+        <!--$scope.solarEnergyGeneration = null;-->
+        <!--$scope.solarConsumptionMinusGeneration = null;-->
+        <!--// $scope.solarWithEnergyGeneration = null;-->
+        <!--$scope.solar = null;-->
+        <!--$scope.costWithDemand = null;-->
+        <!--$scope.costWithoutDemand = null;-->
+        <!--$scope.solarLux = null;-->
+        <!--$scope.temperature = null;-->
+        <!--$scope.humidity = null;-->
+        <!--$scope.windSpeed = null;-->
+    </px-chart>
+</px-card>
+<px-card>
+    <h2>Solar energy generation</h2>
+    <div>
+        <label>Solar panel size (meter squared):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+        <button ng-click="functionSolarWithInputChange1()" name="Submit" >Submit</button>
+    </div>
+    <px-chart tooltip-type="condensed" series-events-width="1">
+        <px-chart-controls data-controls></px-chart-controls>
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="et-consumption-yaxis2"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-yaxis title='{"text": "kilowatt"}'
+                        id="solar-generated-yaxis"
+                        opposite="true"
+                        offset="10"></px-chart-yaxis>
+        <px-chart-series-line id="et-consumption2 (kilowatts)"
+                              axis-id="et-consumption-yaxis2"
+                              data="{{costWithDemand}}"></px-chart-series-line>
+        <px-chart-series-line id="solar-generated (kilowatts)"
+                              axis-id="solar-generated-yaxis"
+                              data="{{solarGenerated}}"></px-chart-series-line>
     </px-chart>
 </px-card>
 </div>

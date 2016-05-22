@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" type="image/png" href="images/car.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <script type='application/javascript' src='bower_components/px/dist/px.min.js'></script>
 
@@ -27,6 +28,8 @@
 </head>
 
 <body class="app" data-ng-controller="MainCtrl">
+
+
     <header role="banner">
         <div class="viewport">
             <h1 class="float--left">
@@ -43,19 +46,26 @@
         </div>
     </header>
 
-    <div class="viewport">
-        <div class="content-wrapper">
-            <px-app-nav class="navbar" nav-items="{{App.tabs}}" path-prefix="/" path-key="state">
-                <!--<px-login class="sticky"></px-login>-->
-            </px-app-nav>
-            <main class="layout__item u-pt-- u-pr-- u-pl--" role="main">
-              <!-- MAIN CONTENT -->
-              <section class="u-1/1" role="region" ui-view>
-                <!-- This is the container where the tabs will render -->
-	      </section>
-            </main>
+    <nav class="navbar navbar-default">
+        <div class="collapse navbar-collapse">
+            <ul class="nav nav-pills">
+                <li ng-repeat="tab in App.tabs"><a class="navbar-link" href="/{{tab.state}}">{{tab.label}}</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
+
+
+
+<div class="viewport">
+<div class="content-wrapper">
+<!--<main class="layout__item u-pt&#45;&#45; u-pr&#45;&#45; u-pl&#45;&#45;" role="main">-->
+<!-- MAIN CONTENT -->
+<section class="u-1/1" role="region" ui-view>
+<!-- This is the container where the tabs will render -->
+</section>
+<!--</main>-->
+</div>
+</div>
 
 
 

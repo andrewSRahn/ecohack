@@ -93,7 +93,7 @@ define([
 
         $http({
             method: 'GET',
-            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
+            url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
         }).
         success(function(data, status, headers, config) {
             console.log('end point reached');
@@ -106,20 +106,29 @@ define([
 
 
             $scope.etConsumption = data[0].reverse();
-            $scope.solarConsumptionWithoutDemandCost = data[0];
             $scope.costWithDemand = data[1].reverse();
             $scope.costWithoutDemand = data[2].reverse();
-            $scope.solarEnergyGeneration = data[3].reverse();
-            $scope.solarLux = data[4].reverse();
-            $scope.temperature = data[5].reverse();
-            $scope.pressure = data[6].reverse();
-            $scope.humidity = data[7].reverse();
-            $scope.windSpeed = data[8].reverse();
-            $scope.solarWithoutEnergyGeneration = data[0];
             //$scope.solarConsumptionWithDemandCost =
             $scope.solarCalcResult1 = $scope.solarEnergyGeneration;
 
         }).error(function(data, status, headers, config) {});
+
+
+
+        $scope.solarGenerated = null;
+        $http({
+            method: 'GET',
+            url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromDat'
+        }).
+        success(function(data, status, headers, config) {
+
+            data = eval(data);
+            $scope.solarGenerated = data[1];
+            console.log(data[1]);
+
+            console.log(solarGenerated);
+        }).error(function(data, status, headers, config) {});
+
 
         /*-------- Start Function for Consumption With demand -cost
         $http({
@@ -133,7 +142,6 @@ define([
         }).error(function(data, status, headers, config) {});
 -----*/
         /*----------  End function -----------*/
-
 
 
 
@@ -204,7 +212,7 @@ define([
 
         $http({
             method: 'GET',
-            url: 'http://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
+            url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
         }).
         success(function(data, status, headers, config) {
             console.log('end point reached');
@@ -254,7 +262,17 @@ define([
     }]);
 
 
-    predixApp.controller('PiCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
+    predixApp.controller('PiCtrl', ['$scope', '$rootScope', '$http', 'restfulFactory',
+                                        function ($scope, $rootScope, $http, restfulFactory) {
+        $scope.tsData = null;
+        $http({
+            method: 'GET',
+            url: '../sample-data/tsFromDat.json'//change this url to new json file location
+        }).
+        success(function(data, status, headers, config) {
+            $scope.tsData = data[0];
+            console.log(data);
+        }).error(function(data, status, headers, config) {});
 
     }]);
 
