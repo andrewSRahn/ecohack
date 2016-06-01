@@ -51,7 +51,8 @@ define([
                 {state: 'solar', label: 'Solar'},
                 {state: 'wind', label: 'Wind'},
                 // {state: 'predictions', label: 'Predictions by day'},
-                {state: 'pi', label: 'Raw pi data'}
+                {state: 'pi', label: 'Raw pi data'},
+		{state: 'About', label: 'About Us'}
             ]
         };
 
