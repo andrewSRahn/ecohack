@@ -52,7 +52,7 @@ define([
                 {state: 'wind', label: 'Wind'},
                 // {state: 'predictions', label: 'Predictions by day'},
                 {state: 'pi', label: 'Raw pi data'},
-		{state: 'About', label: 'About Us'}
+		{state: 'aboutus', label: 'About Us'}
             ]
         };
 
@@ -282,6 +282,8 @@ define([
         $scope.firstRangeDate = '1';
         $scope.secondeRangeDate = '2';
     }]);
+
+
 
 
     // christophFactory();

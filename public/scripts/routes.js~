@@ -38,6 +38,11 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 url: '/pi',
                 templateUrl: 'views/pi.html',
                 controller: 'PiCtrl'
+            })
+ 	.state('About', {
+                url: '/aboutus',
+                templateUrl: 'views/aboutus.html',
+                controller: 'AboutCtrl'
             });
 
 

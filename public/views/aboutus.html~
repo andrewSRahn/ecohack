@@ -2,7 +2,7 @@
 <div id="AboutUs" ng-controller="AboutCtrl">
 <px-card>
  <h2>About Us</h2>
-<div class="container">
+<div>
 <p>
 Our innovative combination hardware-software solution permits users to install a weather-resistant Raspberry Pi box that monitors a series of data, including readings from an actual solar panel, the current pressure, humidity, temperature, and luminosity, and an anemometer to measure wind speed.  The data is transmitted over a custom OPC-UA server implementation through Predix Machine to a cloud-based PostgreSQL database that is reviewed by a Python-based analytics system, leading to new analyzed data in an additional Predix-Postgres database that is gathered and sent to our AngularJS user-interface through a RESTful web service.
 </p>

@@ -39,7 +39,7 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 templateUrl: 'views/pi.html',
                 controller: 'PiCtrl'
             })
- 	.state('About', {
+ 	.state('aboutus', {
                 url: '/aboutus',
                 templateUrl: 'views/aboutus.html',
                 controller: 'AboutCtrl'
