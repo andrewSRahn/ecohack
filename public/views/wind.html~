@@ -1,25 +1,91 @@
-<div id="Wind" ng-controller="WindCtrl">>
+<div id="Wind" ng-controller="WindCtrl"> 
+    <script>
+        // WRITE THE VALIDATION SCRIPT IN THE HEAD TAG.
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
 	<px-card>
-		<h1>Hello world</h1>
-	</px-card>   
-	<px-card>
-		<h3>px-simple-line-chart</h3>
-		<px-simple-line-chart
-			min="1"
-			max="6"
-			columns="20"
-			rows="20"
-			min-label="min-label"
-			max-label="max-label"
-			line-data="[ [1,2], [2,3], [3,4] ]"
-			threshold="3"
-			threshold-label="Custom Label"
-			width="480"
-			height="480">
-		</px-simple-line-chart>
+		<h2>Date </h2><input type="text" id="datepicker"/>
 	</px-card>
 
-	<px-card>
-		<p>{{helloWind}}</p>
-	</px-card>
+    <px-card>
+        <h2>Energy consumption</h2>
+
+        <!--<px-data-table table-data="{{data}}"></px-data-table>-->
+
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls></px-chart-controls>
+            <px-chart-yaxis title='{"text": "kilowatt"}'
+                            id="et-consumption-yaxis"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "kilowatt"}'
+                            id="et-consumption-minus-demand-yaxis"
+                            opposite="true"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="et-consumption (kilowatts)"
+                                  axis-id="et-consumption-yaxis"
+                                  data="{{etConsumption}}"></px-chart-series-line>
+            <px-chart-series-line id="et-consumption-minus-demand (kilowatts)"
+                                  axis-id="et-consumption-minus-demand-yaxis"
+                                  data="{{etConsumption}}"></px-chart-series-line>
+        </px-chart>
+    </px-card>
+    <px-card>
+        <h2>Wind energy generation</h2>
+        <div>
+            <label>Wind turbine size (meter squared):</label> <input type="text" ng-model="value" name="solarInput2" onkeypress="javascript:return isNumber(event)" /> <!--ng-change="functionCall()"-->
+            <button ng-click="functionSolarWithInputChange1()" name="Submit" >Submit</button>
+        </div>
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls></px-chart-controls>
+            <px-chart-yaxis title='{"text": "kilowatt"}'
+                            id="et-consumption-yaxis2"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "kilowatt"}'
+                            id="wind-generated-yaxis"
+                            opposite="true"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="et-consumption2 (kilowatts)"
+                                  axis-id="et-consumption-yaxis2"
+                                  data="{{etConsumption}}"></px-chart-series-line>
+            <px-chart-series-line id="wind-generated (kilowatts)"
+                                  axis-id="wind-generated-yaxis"
+                                  data="{{etConsumption}}"></px-chart-series-line>
+        </px-chart>
+    </px-card>
+    <px-card>
+        <h2>Cost impact</h2>
+        <div>
+            <label>Wind turbine size (meter squared):</label>
+            <input type="text"
+                   ng-model="value"
+                   name="solarInput1"
+                   onkeypress="javascript:return isNumber(event)" />
+            <!--ng-change="functionCall()"-->
+            <button ng-click="functionSolarWithInputChange1(value, costWithoutDemand)"
+                    name="Submit">Submit</button>
+        </div>
+        <px-chart tooltip-type="condensed" series-events-width="1">
+            <px-chart-controls data-controls></px-chart-controls>
+            <px-chart-yaxis title='{"text": "$"}'
+                            id="cost-without-wind-yaxis"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-yaxis title='{"text": "$"}'
+                            id="cost-with-wind-yaxis"
+                            opposite="true"
+                            offset="10"></px-chart-yaxis>
+            <px-chart-series-line id="cost-without-wind ($)"
+                                  axis-id="cost-without-wind-yaxis"
+                                  data="{{costWithDemand}}"></px-chart-series-line>
+            <px-chart-series-line id="cost-with-wind ($)"
+                                  axis-id="cost-with-wind-yaxis"
+                                  data="{{costWithoutDemand}}"></px-chart-series-line>
+        </px-chart>
+    </px-card>
+
 </div>
