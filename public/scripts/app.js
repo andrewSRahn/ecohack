@@ -26,7 +26,12 @@ define([
         'px.ngBindPolymer'
     ]);
 
-
+    /**
+     * Factory
+     * This factory is where all the REST endpoints should be defined.
+     * Need to pair up with someone
+     * - aahn2
+     */
     predixApp.factory('restfulFactory', function () {
         var factory = {};
         // factory.routes =
@@ -93,7 +98,6 @@ define([
             $scope.amps = data[2];
             $scope.volts = data[3];
 
-            console.log("hello");
 
         }).error(function(data, status, headers, config) {});
 
