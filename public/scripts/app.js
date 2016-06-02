@@ -39,7 +39,7 @@ define([
      * This controller is the top most level controller that allows for all
      * child controllers to access properties defined on the $rootScope.
      */
-    predixApp.controller('MainCtrl', ['$scope', '$rootScope', 'restfulFactory', function ($scope, $rootScope, restfulFactory) {
+    predixApp.controller('MainCtrl', ['$scope', '$rootScope', '$http', 'restfulFactory', function ($scope, $rootScope, $http, restfulFactory) {
 
         //Global application object
         window.App = $rootScope.App = {
@@ -57,7 +57,7 @@ define([
         };
 
 
-
+        // Use this code to use authentication
         // $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
         //     if (angular.isObject(error) && angular.isString(error.code)) {
         //         switch (error.code) {
@@ -78,6 +78,33 @@ define([
 
     predixApp.controller('SolarCtrl', ['$scope', '$http', '$rootScope', 'restfulFactory', function ($scope, $http, $rootScope, restfulFactory) {
 
+        // Getting the Data
+        // Need help figuring out how to DRY this out in restfulFactory
+        $scope.active, $scope.reactive, $scope.amps, $scope.volts = null;
+
+        $http({
+            method: 'GET',
+            url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromDataSet'
+        }).
+        success(function(data, status, headers, config) {
+            data = eval(data);
+            $scope.active = data[0];
+            $scope.reactive = data[1];
+            $scope.amps = data[2];
+            $scope.volts = data[3];
+
+            console.log("hello");
+
+        }).error(function(data, status, headers, config) {});
+
+
+
+
+
+
+
+
+
         $scope.solarConsumptionWithoutDemandCost = null;
         $scope.solarConsumptionWithDemandCost = null;
         $scope.solarWithoutEnergyGeneration = null;
@@ -91,7 +118,6 @@ define([
         $scope.temperature = null;
         $scope.humidity = null;
         $scope.windSpeed = null;
-
         $http({
             method: 'GET',
             url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'

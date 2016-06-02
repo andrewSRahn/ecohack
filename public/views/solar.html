@@ -11,32 +11,48 @@
 </script>
 
 
+<px-card>
+    <div class="container">
 
-<div class="container">
+        <div class="row">
+            <p>Weee pretend this is a solar panel</p>
+            <img src="../images/baseball.png">
 
-    <div class="row">
-        <p>Weee pretend this is a solar panel</p>
-        <img src="../images/baseball.png">
+            <label>meters squared:</label>
+            <input type="text" value="ie 20" ng-model="panel"/>
 
-        <label>solar panel surface area</label>
-        <label>meters squared:</label>
-        <input type="text" ng-model="panel"/>
+            <label>datepicker:</label>
+            <input type="text"/>
+        </div>
 
-
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th>Datetime</th>
+                    <th>Active</th>
+                    <th>Reactive</th>
+                    <th>Amps</th>
+                    <th>Volts</th>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
+</px-card>
+
 <px-card>
     <h2>Cost impact</h2>
-    <div>
-        <label>Solar panel size (meter squared):</label>
-        <input type="text"
-               ng-model="value"
-               name="solarInput1"
-               onkeypress="javascript:return isNumber(event)" />
-        <!--ng-change="functionCall()"-->
-        <button ng-click="functionSolarWithInputChange1(value, costWithoutDemand)"
-                name="Submit">Submit</button>
-    </div>
+
+    <!--<div>-->
+        <!--<label>Solar panel size (meter squared):</label>-->
+        <!--<input type="text"-->
+               <!--ng-model="value"-->
+               <!--name="solarInput1"-->
+               <!--onkeypress="javascript:return isNumber(event)" />-->
+        <!--&lt;!&ndash;ng-change="functionCall()"&ndash;&gt;-->
+        <!--<button ng-click="functionSolarWithInputChange1(value, costWithoutDemand)"-->
+                <!--name="Submit">Submit</button>-->
+    <!--</div>-->
+
     <px-chart tooltip-type="condensed" series-events-width="1">
         <px-chart-controls data-controls></px-chart-controls>
         <px-chart-yaxis title='{"text": "$"}'
