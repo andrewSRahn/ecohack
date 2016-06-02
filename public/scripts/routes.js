@@ -19,6 +19,11 @@ define(['angular', 'angular-ui-router'], function(angular) {
             //     templateUrl: 'views/dashboards.html',
             //     controller: 'DashboardsCtrl'
             // })
+            .state('aboutus', {
+                url: '/aboutus',
+                templateUrl: 'views/aboutus.html',
+                controller: 'AboutCtrl'
+            })
             .state('solar', {
                 url: '/solar',
                 templateUrl: 'views/solar.html',
@@ -38,11 +43,6 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 url: '/pi',
                 templateUrl: 'views/pi.html',
                 controller: 'PiCtrl'
-            })
- 	.state('aboutus', {
-                url: '/aboutus',
-                templateUrl: 'views/aboutus.html',
-                controller: 'AboutCtrl'
             });
 
 

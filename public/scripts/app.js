@@ -52,7 +52,7 @@ define([
                 {state: 'wind', label: 'Wind'},
                 // {state: 'predictions', label: 'Predictions by day'},
                 {state: 'pi', label: 'Raw pi data'},
-		{state: 'aboutus', label: 'About Us'}
+		        {state: 'aboutus', label: 'About Us'}
             ]
         };
 
@@ -97,9 +97,9 @@ define([
             url: 'https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel'
         }).
         success(function(data, status, headers, config) {
-            console.log('end point reached');
-
-            console.log(typeof(data));
+            // console.log('end point reached');
+            //
+            // console.log(typeof(data));
 
             data = eval(data);
 
@@ -125,9 +125,7 @@ define([
 
             data = eval(data);
             $scope.solarGenerated = data[1];
-            console.log(data[1]);
 
-            console.log(solarGenerated);
         }).error(function(data, status, headers, config) {});
 
 
@@ -284,7 +282,9 @@ define([
     }]);
 
 
+    predixApp.controller('AboutCtrl', function(){
 
+    });
 
     // christophFactory();
     //
