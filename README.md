@@ -6,3 +6,4 @@
 <p>https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromExcel</p>
 <p>https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromDat</p>
 <p>https://hello-python-analyze.run.aws-usw02-pr.ice.predix.io/tsFromDataSet</p>
+<p>https://github.com/redge/predix/tree/py_init</p>
